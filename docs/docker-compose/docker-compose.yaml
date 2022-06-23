@@ -1,0 +1,16 @@
+---
+version: "3"
+
+services:
+  dnsapi:
+    container_name: dnsapi
+    hostname: dnsapi
+    image: docker pull projects.registry.vmware.com/psocna/windns-api:v1.0.0
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./cert.pem:/app/cert.pem
+      - ./key.pem:/app/key.pem
+    ports:
+      - "443:443"
